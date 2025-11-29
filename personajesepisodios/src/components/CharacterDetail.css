@@ -1,0 +1,87 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro semitransparente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(2px); /* Efecto borroso de fondo (opcional) */
+}
+
+.modal-content {
+  background-color: white;
+  padding: 30px;
+  border-radius: 15px;
+  max-width: 500px;
+  width: 90%;
+  max-height: 85vh; /* Evita que sea más alto que la pantalla */
+  overflow-y: auto; /* Scroll si el contenido es muy largo */
+  position: relative;
+  box-shadow: 0 20px 25px rgba(0,0,0,0.2);
+  text-align: left;
+}
+
+/* Botón de cerrar (X o texto) */
+.modal-content button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: #ff5b5b;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.info-principal {
+  text-align: center;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 15px;
+}
+
+.info-principal img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #00b5cc;
+}
+
+.sub-list h3 {
+  margin-top: 0;
+  color: #555;
+}
+
+.sub-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+/* Estilo para los items clickables (Episodios dentro del personaje) */
+.clickable-item {
+  padding: 8px 10px;
+  margin-bottom: 5px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.2s;
+  color: #333;
+}
+
+.clickable-item:hover {
+  background-color: #e0f7fa;
+  color: #008c9e;
+  font-weight: bold;
+}
+
+/* --- Estilo Específico para el Nivel 3 (EpisodeDetail) --- */
+/* Si creas EpisodeDetail.css, copia esto allí */
+.detail-level-2 {
+  border: 5px solid #00b5cc; /* Borde azul para distinguir que es el 2º modal */
+}

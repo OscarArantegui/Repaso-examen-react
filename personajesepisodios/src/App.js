@@ -1,8 +1,13 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 
+import SearchBar from './components/SearchBar';
+import CharacterList from './components/CharacterList'; 
+import CharacterDetail from './components/CharacterDetail';
+import EpisodeDetail from './components/EpisodeDetail';
+
 function App() {
-  const [character, SetCharacters] = useState([]);
+  const [characters, SetCharacters] = useState([]);
   const [selectedCharacter, setSelectedCharacter] = useState([null]);
   const [selectedEpisode, setSelectedEpisode] = useState([null]);
 
@@ -14,21 +19,22 @@ function App() {
     setLoading(true)
     setSelectedCharacter(null);
     setSelectedEpisode(null);
-  }
-  try{
-    const url = 'https://rickandmortyapi.com/api/character/?name=${name}';
-    const res = await fetch(url);
-    const data = await res.json();
+  
+    try{
+      const url = 'https://rickandmortyapi.com/api/character/?name=${name}';
+      const res = await fetch(url);
+      const data = await res.json();
 
-    if (data.results) {
-      setSelectedCharacter(data.results);
-    } else {
-      setCharacters ([]);
+      if (data.results) {
+        setSelectedCharacter(data.results);
+      } else {
+        SetCharacters ([]);
+      }
+    } catch (err){
+      console.error(err);
+    } finally {
+      setLoading(false);
     }
-  } catch (err){
-    console.error(err);
-  } finally {
-    setLoading(false);
   };
   //fetch episodios
   const onCharacterClick = async (Character) => {
@@ -43,13 +49,13 @@ function App() {
       const episodesData = await Promise.all(episodesPromises);
       */
       const episodesData =[];
-      for (let i = 0; i < character.episode.length; i++) {
-        const res = await fetch(character.episode [i]);
+      for (let i = 0; i < characters.episode.length; i++) {
+        const res = await fetch(characters.episode [i]);
         const data = await res.json();
         episodesData.push(data);
       }
 
-      const characterWithEpisodes = { ...character, episodeDetails: episodesData};
+      const characterWithEpisodes = { ...characters, episodeDetails: episodesData};
 
       setSelectedCharacter(characterWithEpisodes);
 
