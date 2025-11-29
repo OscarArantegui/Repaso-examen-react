@@ -1,8 +1,14 @@
 import { useState } from 'react';
 import './SearchBar.css'
 function SearchBar({ onSearch }) {
+    const [term, setTerm] = useState('');
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        onSearch(term);
+    }
     return(
-    <form onSubmit={handleSumbit} className="search-bar">
+    <form onSubmit={handleSubmit} className="search-bar">
         <input
             type="text"
             placeholder="Buscar personaje (ej.Rick)..."
