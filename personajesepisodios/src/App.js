@@ -1,23 +1,127 @@
-import logo from './logo.svg';
+import { useEffect, useState } from 'react';
 import './App.css';
 
 function App() {
+  const [character, SetCharacters] = useState([]);
+  const [selectedCharacter, setSelectedCharacter] = useState([null]);
+  const [selectedEpisode, setSelectedEpisode] = useState([null]);
+
+  const [loading, setLoading] =useState(false);
+  const [limit, setLimit] = useState(20);
+
+  //fetch personajes
+  const fetchCharacters =async (name = '') =>{
+    setLoading(true)
+    setSelectedCharacter(null);
+    setSelectedEpisode(null);
+  }
+  try{
+    const url = 'https://rickandmortyapi.com/api/character/?name=${name}';
+    const res = await fetch(url);
+    const data = await res.json();
+
+    if (data.results) {
+      setSelectedCharacter(data.results);
+    } else {
+      setCharacters ([]);
+    }
+  } catch (err){
+    console.error(err);
+  } finally {
+    setLoading(false);
+  };
+  //fetch episodios
+  const onCharacterClick = async (Character) => {
+    setLoading(true);
+    try{
+      // El personaje tiene un array de URLs: character.episode
+      // Necesitamos convertir esas URLs en datos reales.
+      
+      // Opción A: Promise.all (Más rápida y profesional)
+      /*
+      const episodesPromises = character.episode.map(url => fetch(url).then(res => res.json()));
+      const episodesData = await Promise.all(episodesPromises);
+      */
+      const episodesData =[];
+      for (let i = 0; i < character.episode.length; i++) {
+        const res = await fetch(character.episode [i]);
+        const data = await res.json();
+        episodesData.push(data);
+      }
+
+      const characterWithEpisodes = { ...character, episodeDetails: episodesData};
+
+      setSelectedCharacter(characterWithEpisodes);
+
+    } catch (error) {
+      console.error("Error fetching episodes", error)
+    } finally {
+      setLoading(false);
+    }
+  };
+  //manejadores
+  const onEpisodeClick = (episode) => {
+    setSelectedEpisode(episode);
+  };
+  
+  const closeCharacter = () => {
+    setSelectedCharacter(null);
+  }
+
+  const closeEpisode = () => {
+    setSelectedEpisode (null);
+  }
+  
+  const handleLimitChange = (e) => {
+    setLimit (Number(e.target.value));
+  }
+
+  //carga inicial 
+  useEffect (() => {
+    fetchCharacters();
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Personajes - Episodios</h1>
+
+      {/* Barra de Búsqueda */}
+      <SearchBar onSearch={fetchCharacters} />
+
+      {/* Filtro de Límite (Requisito extra) */}
+      <div className="filter-container">
+        <label>Mostrar: </label>
+        <select onChange={handleLimitChange} value={limit}>
+          <option value="3">3</option>
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="20">20</option>
+        </select>
+      </div>
+
+      {loading && <p>Cargando...</p>}
+      {/*Lista personajes*/}
+      {/*Usamos slice para el limite*/}
+      {!selectedCharacter && (
+        <CharacterList
+          characters={characters.slice(0,limit)}
+          onClick={onCharacterClick}
+        />
+      )}
+
+      {selectedCharacter &&!selectedEpisode && (
+        <CharacterDetail
+          character={selectedCharacter}
+          onClose={closeCharacter}
+          onEpisodeClick={onEpisodeClick}
+        />
+      )}
+      {selectedEpisode && (
+        <EpisodeDetail
+          episode={selectedEpisode}
+          onClose={closeEpisode}
+        />
+      )}
     </div>
   );
 }
