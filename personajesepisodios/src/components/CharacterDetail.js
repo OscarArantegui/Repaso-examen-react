@@ -15,7 +15,7 @@ function CharacterDetail ({character, onClose, onEpisodeClick}) {
                 <div className="sub-list">
                     <h3>Aparece en {character.episodeDetails.length} episodios:</h3>
                     <ul>
-                        {CharacterDetail.map(ep => ( 
+                        {character.episodeDetails.map(ep => ( 
                             <li key={ep.id} onClick={() => onEpisodeClick(ep)} className="clickable-item">
                                 <b>{ep.episode}:</b>{ep.name}
                             </li>

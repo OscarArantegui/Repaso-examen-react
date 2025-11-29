@@ -8,8 +8,8 @@ import EpisodeDetail from './components/EpisodeDetail';
 
 function App() {
   const [characters, SetCharacters] = useState([]);
-  const [selectedCharacter, setSelectedCharacter] = useState([null]);
-  const [selectedEpisode, setSelectedEpisode] = useState([null]);
+  const [selectedCharacter, setSelectedCharacter] = useState(null);
+  const [selectedEpisode, setSelectedEpisode] = useState(null);
 
   const [loading, setLoading] =useState(false);
   const [limit, setLimit] = useState(20);
@@ -21,7 +21,7 @@ function App() {
     setSelectedEpisode(null);
   
     try{
-      const url = 'https://rickandmortyapi.com/api/character/?name=${name}';
+      const url = `https://rickandmortyapi.com/api/character/?name=${name}`;
       const res = await fetch(url);
       const data = await res.json();
 
@@ -50,12 +50,12 @@ function App() {
       */
       const episodesData =[];
       for (let i = 0; i < characters.episode.length; i++) {
-        const res = await fetch(characters.episode [i]);
+        const res = await fetch(Character.episode [i]);
         const data = await res.json();
         episodesData.push(data);
       }
 
-      const characterWithEpisodes = { ...characters, episodeDetails: episodesData};
+      const characterWithEpisodes = { ...Character, episodeDetails: episodesData};
 
       setSelectedCharacter(characterWithEpisodes);
 
