@@ -26,7 +26,7 @@ function App() {
       const data = await res.json();
 
       if (data.results) {
-        setSelectedCharacter(data.results);
+        SetCharacters(data.results);
       } else {
         SetCharacters ([]);
       }
@@ -49,7 +49,7 @@ function App() {
       const episodesData = await Promise.all(episodesPromises);
       */
       const episodesData =[];
-      for (let i = 0; i < characters.episode.length; i++) {
+      for (let i = 0; i < Character.episode.length; i++) {
         const res = await fetch(Character.episode [i]);
         const data = await res.json();
         episodesData.push(data);

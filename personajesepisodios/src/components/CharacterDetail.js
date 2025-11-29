@@ -2,9 +2,9 @@ import './CharacterDetail.css';
 
 function CharacterDetail ({character, onClose, onEpisodeClick}) {
     return(
-        <div clasName="modal-overlay">
+        <div className="modal-overlay">
             <div className="modal-content">
-                <button clasName="close-btn" onClick={onClose}>Cerrar Personaje</button>
+                <button className="close-btn" onClick={onClose}>Cerrar Personaje</button>
                 <div className="info-principal">
                     <img src={character.image} alt={character.name}/>
                     <h2>{character.name}</h2>
