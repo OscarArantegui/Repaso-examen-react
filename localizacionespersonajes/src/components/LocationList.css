@@ -1,0 +1,16 @@
+.location-list {
+  display: grid;
+  /* Crea columnas automáticas con un ancho mínimo de 200px */
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.no-results {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #d9534f;
+  margin-top: 40px;
+}
