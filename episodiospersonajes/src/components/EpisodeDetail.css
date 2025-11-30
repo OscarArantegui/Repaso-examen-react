@@ -1,0 +1,96 @@
+/* Modal Grande (Nivel 1) - Fondo y contenedor principal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(2px);
+}
+
+.modal-content {
+  background-color: white;
+  padding: 30px;
+  border-radius: 15px;
+  max-width: 600px; /* Un poco más ancho para la lista */
+  width: 90%;
+  max-height: 85vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 20px 25px rgba(0,0,0,0.2);
+  text-align: left;
+}
+
+/* Botón de cerrar */
+.modal-content .close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: #ff5b5b;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Cabecera del episodio */
+.info-principal {
+  text-align: center;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 15px;
+}
+
+.info-principal h2 {
+  margin: 0 0 10px 0;
+  color: #333;
+}
+
+/* Estilos de la Lista de Personajes */
+.sub-list h3 {
+  margin-top: 0;
+  color: #555;
+  border-left: 5px solid #00b5cc;
+  padding-left: 10px;
+}
+
+.sub-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+/* Item de la lista (El personaje en pequeñito) */
+.clickable-item {
+  display: flex;          /* Para alinear foto y texto horizontalmente */
+  align-items: center;    /* Centrado vertical */
+  padding: 8px 10px;
+  margin-bottom: 8px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 1px solid #eee;
+}
+
+.clickable-item:hover {
+  background-color: #e0f7fa;
+  border-color: #00b5cc;
+  transform: translateX(5px); /* Pequeño movimiento al pasar el mouse */
+}
+
+/* La imagen pequeña dentro de la lista */
+.clickable-item img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 15px;
+  border: 2px solid #ccc;
+}

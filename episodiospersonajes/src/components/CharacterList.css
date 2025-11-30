@@ -1,0 +1,15 @@
+.character-list {
+  display: grid;
+  /* Esto hace que las columnas se ajusten solas según el tamaño de la pantalla */
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.no-found {
+  font-size: 1.2rem;
+  color: #d9534f;
+  margin-top: 20px;
+}

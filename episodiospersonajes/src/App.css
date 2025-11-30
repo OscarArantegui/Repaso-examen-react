@@ -1,0 +1,28 @@
+.App {
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding-bottom: 50px;
+  background-color: #f0f2f5;
+  min-height: 100vh;
+}
+
+h1 {
+  margin: 0;
+  padding: 20px 0;
+  color: #333;
+}
+
+/* Estilo para el contenedor del filtro (select) */
+.filter-container {
+  margin: 20px 0;
+  font-size: 1.1rem;
+}
+
+.filter-container select {
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  margin-left: 10px;
+  cursor: pointer;
+}

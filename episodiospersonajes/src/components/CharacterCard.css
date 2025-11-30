@@ -1,0 +1,29 @@
+.character-card {
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 1px solid #eee;
+}
+
+.character-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px rgba(0,0,0,0.15);
+}
+
+.character-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover; /* Recorta la imagen para que llene el hueco sin deformarse */
+  display: block;
+}
+
+.character-card .card-info {
+  padding: 15px;
+  margin: 0;
+  font-size: 1.1rem;
+  color: #333;
+  text-align: center;
+}
